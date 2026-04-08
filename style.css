@@ -1,0 +1,971 @@
+/* =========================================
+   1. 字體與全域設定
+========================================= */
+@font-face {
+    font-family: 'ENF'; 
+    src: url('/font/enfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; 
+}
+@font-face {
+    font-family: 'CHO'; 
+    src: url('/font/c.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; 
+}
+@font-face {
+    font-family: 'MN'; 
+    src: url('/font/a.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; 
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: #A5570A;
+    font-family: 'ENF', sans-serif; 
+    color: #ffffff; 
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+}
+body::-webkit-scrollbar {display: none;}
+
+:root {
+    --mood-c1: #156082;
+    --mood-c2: #A5570A;
+    --mood-c3: #929000; 
+    --lg-bg-color: rgba(255, 255, 255, 0.7); 
+    --lg-highlight: rgba(255, 255, 255, 0.8); 
+    --lg-text: #000000;
+}
+
+/* ======================================
+   2. 標題層級系統
+====================================== */
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    line-height: 1.2;
+}
+h1, h3 {font-family: 'CHO', sans-serif;font-weight: normal;}
+h2,h5 {font-family: 'MN', sans-serif; font-weight: normal; }
+h4, h6 {font-family: 'ENF', sans-serif;}
+
+/* clamp(手機最小尺寸, 隨螢幕縮放比例, 電腦最大尺寸) */
+h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); letter-spacing: 0.15em;}
+h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); color:#ffffff;} /* logo */
+h4 { font-size: clamp(0.9rem, 1.5vw, 1rem); letter-spacing: 0.1em;} /* 導覽列 版權 */
+h5 { font-size: clamp(1.1rem, 2vw, 1.6rem); } /* 故事文案 */
+h6 { font-size: clamp(0.9rem, 1.5vw, 1rem); font-weight: normal;} /* 滚動提示 */
+
+
+/* =========================================
+   3. 載入動畫與遮罩設定
+========================================= */
+body.u96 { overflow: hidden; }
+
+#loader-wrapper {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-color: #A5570A; 
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px; 
+}
+
+.loader-logo {
+    position: relative;
+    width: 120px; 
+    height: 120px;
+}
+
+.logo-part {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    opacity: 0; 
+}
+.logo-part svg { width: 100%; height: 100%; }
+
+.loader-text  {
+    font-family: 'ENF', sans-serif;
+    color: #fff;
+    font-size: clamp(1.6rem, 4vw, 4rem);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0; 
+}
+#loading-text {
+    font-family: 'ENF', sans-serif;
+    color: #fff;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+}
+/* =========================================
+   4. 導覽列設定
+========================================= */
+.menu-backdrop {
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4); /* 背景微微變暗 */
+    backdrop-filter: blur(8px);         /* 毛玻璃模糊效果 */
+    -webkit-backdrop-filter: blur(8px); /* 支援蘋果設備 */
+    z-index: 95; /* 必須在導覽列(100)的下方 */
+    opacity: 0;
+    pointer-events: none; /* 隱藏時不能阻擋點擊 */
+    transition: opacity 0.4s ease;
+}
+.menu-backdrop.is-open {
+    opacity: 1;
+    pointer-events: auto; /* 打開時允許點擊 */
+}
+.main-nav {
+    position: fixed;
+    top: 20px;
+    left: 50px;  
+    right: 50px; 
+    z-index: 100; 
+    display: flex; 
+    justify-content: flex-end; 
+    align-items: center; 
+    pointer-events: none; 
+}
+.main-nav * { pointer-events: auto; }
+
+.company-logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.company-logo h3 {
+    margin: 0; 
+    letter-spacing: 0.1em;
+    font-weight: bold;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+
+.nav-glass-wrapper.glass-container {
+    border-radius: 10px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+}
+
+.nav-content {
+    padding: 12px 35px; 
+    display: flex;
+    align-items: center;
+}
+
+.nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 40px; 
+}
+
+.nav-item { 
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color:#9b4d0e;
+}
+.nav-item h4 { margin: 0; transition: opacity 0.3s ease; }
+.nav-item:hover h4 { color: #486d41; }
+
+.nav-item::before { 
+    content: '';
+    position: absolute;
+    left: -20px; 
+    width: 13px;
+    height: 13px;
+    background-color: #ffffff;
+    border-radius: 50%; 
+    opacity: 0;
+    transform: scale(0); 
+    transition: opacity 0.3s ease, transform 0.3s ease; 
+}
+.nav-item.is-active h4 { color: var(--lg-text); }
+.nav-item.is-active::before {
+    opacity: 1;
+    transform: scale(1);
+    background-color: #dd7a1e; 
+}
+
+.hamburger {
+    display: none; 
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    z-index: 150; 
+    padding: 10px;
+}
+.hamburger span {
+    width: 30px;
+    height: 2px;
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+/* =========================================
+   5. 捲動與畫布設定
+========================================= */
+.scroll-container {
+    height: 11000px;
+    position: relative;
+}
+
+.sticky-container {
+    position: sticky;
+    top: 0;
+    height: 100lvh;
+    width: 100%;
+    overflow: hidden; 
+}
+
+video {
+    width: 100%;
+    height: 100lvh;
+    object-fit: cover; 
+    display: block;
+    pointer-events: none;
+}
+
+#scroll-hint {
+    position: fixed; 
+    bottom: 40px;       
+    left: 50%;          
+    transform: translateX(-50%); 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; 
+    opacity: 0;         
+    z-index: 10000;
+    pointer-events: none;
+}
+
+.scroll-text {
+    color: #ffffff;
+    letter-spacing: 0.1em;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    margin: 0;
+}
+.scroll-circle {
+    width: 45px;
+    height: 45px;
+    background-color: #dd7a1e; 
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative; 
+    overflow: hidden;   
+}
+.scroll-arrow {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-bottom: 2px solid #ffffff;
+    border-right: 2px solid #ffffff;
+    animation: arrowDownLoop 1.5s infinite none; 
+}
+
+@keyframes arrowDownLoop {
+    0% { transform: translateY(-12px) rotate(45deg); opacity: 0; }
+    50% { transform: translateY(0px) rotate(45deg); opacity: 1; }
+    100% { transform: translateY(12px) rotate(45deg); opacity: 0; }
+}
+/* =========================================
+   流體漸層 (效能友善版)
+========================================= */
+.ambient-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100vw; height: 100lvh;
+    z-index: 25;
+    pointer-events: none;
+
+    /* 1. 流體漸層 */
+    background-image: 
+        radial-gradient(ellipse 120% 100% at 10% 0%, var(--mood-c1) 0%, transparent 60%),
+        radial-gradient(ellipse 100% 120% at 90% 100%, var(--mood-c2) 0%, transparent 65%),
+        radial-gradient(ellipse 110% 80% at 50% 120%, var(--mood-c3) 0%, transparent 60%);
+    
+    /* 放大背景尺寸，讓移動時有流動的空間 */
+    background-size: 150% 150%; 
+    mix-blend-mode: hard-light;
+    opacity: 0.65;
+
+    /* 2. 效能極佳的微動態：只改變背景座標來製造流動感 */
+    animation: ambientBreathe 18s ease-in-out infinite alternate;
+}
+
+/* 3. 底片雜訊顆粒層 */
+.ambient-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    /* SVG雜訊 */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay; /* 讓雜訊自然融入色彩與影片 */
+    opacity: 0.35; /* 顆粒感濃度 */
+    pointer-events: none;
+}
+
+/* 緩慢流動的呼吸動畫 */
+@keyframes ambientBreathe {
+    0%   { background-position: 0% 0%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 100%; }
+}
+/* =========================================
+   6. 故事文字區塊
+========================================= */
+.story-wrapper {
+    position: absolute;
+    top: 10lvh;
+    left: 50%;
+    transform: translateX(-50%); 
+    width: 88vw;
+    max-width: 1300px;
+    height: 80lvh;
+    z-index: 26;
+    pointer-events: none;
+    overflow: hidden;
+    
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+.story-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.story-content h5 {
+    color: #ffffff; 
+    line-height: 2.2; 
+    letter-spacing: 0.1em;
+    margin: 0;
+    /* 故事文字響應式*/
+    font-size: clamp(1.5rem, 3.1vw, 2.4rem); 
+    text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.9);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    opacity: 0; 
+    text-align: center;
+}
+
+/* =========================================
+   7. Project 與 Contact 區塊全域設定
+========================================= */
+.project-section, .contact-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100lvh;
+    z-index: 20;
+    opacity: 0; 
+    pointer-events: none; 
+}
+.project-title-wrapper {
+    position: absolute;
+    top: 15lvh; /* 避開上方的導覽列 */
+    right: 5vw;  /* 靠左對齊，帶有留白美學 */
+    z-index: 10;
+    pointer-events: none; /* 絕對不能擋住地圖滑鼠互動 */
+    /* 初始狀態設為透明與稍微往下，交給 GSAP 控制優雅進場 */
+    opacity: 0; 
+    transform: translateY(20px); 
+}
+
+.project-title-wrapper h2 {
+    color: #ffffff;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+    margin-bottom: 8px; /* 和副標的距離 */
+}
+
+.project-title-wrapper h6 {
+    color: #ffffff; 
+    font-size: clamp(0.8rem, 0.95vw, 1.2rem);
+    letter-spacing: 0.4em;
+    font-weight: bold;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+    margin-left: 0.2rem;
+}
+
+@media (max-width: 768px) {
+    .project-title-wrapper {
+        top: 12lvh;
+        left: 5vw;
+    }
+    .project-title-wrapper h6 {
+        margin-left: 0.1rem;
+    }
+}
+/* =========================================
+   8. Project 地圖標記點設定
+========================================= */
+.map-markers-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 56.25vw;      
+    min-width: 177.78vh;  
+    min-height: 100lvh;
+    pointer-events: none; 
+}
+
+.map-marker {
+    position: absolute;
+    width: 0px;  
+    height: 0px; 
+    transform: translate(-50%, -50%); 
+    pointer-events: auto;
+    z-index: 5;
+}
+
+.box-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-27.5px, -50%);
+    display: flex;
+    align-items: center;
+    padding: 10px 20px 10px 15px; 
+    width: max-content;
+    pointer-events: none; 
+}
+
+.pulse-dot {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    pointer-events: auto; 
+    flex-shrink: 0;
+}
+
+.pulse-dot::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 25px;
+    height: 25px;
+    background-color: transparent; 
+    border: 3px solid #ffffff; 
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
+    box-sizing: border-box;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    z-index: 2;
+}
+
+.pulse-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45px; 
+    height: 45px;
+    background-color: rgba(255, 255, 255, 0.3); 
+    border-radius: 50%;
+    animation: pulse 2s infinite ease-out; 
+    z-index: 1;
+    pointer-events: none;
+}
+
+.box-container p {
+    font-family: 'MN', sans-serif;
+    color: #ffffff;
+    font-size: clamp(1rem, 2vw, 1.6rem);
+    letter-spacing: 0.1em;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+    margin: 0 0 0 15px; 
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.status-tag {
+    position: absolute;
+    top: -28px; 
+    left: 0px;  
+    font-family: 'MN', sans-serif;
+    font-size: clamp(0.85rem, 1.5vw, 1.3rem); 
+    color: #ffffff;
+    text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.8);
+    letter-spacing: 0.1em;
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: all 0.3s ease;
+}
+
+.pulse-dot:hover::before {
+    width: 12px;
+    height: 12px;
+    background-color: #dd7a1e; 
+    border-color: #dd7a1e; 
+    box-shadow: 0 0 15px rgba(221, 122, 30, 0.9);
+}
+.pulse-dot:hover::after {
+    background-color: rgba(221, 122, 30, 0.6); 
+}
+
+.pulse-dot:hover ~ p {
+    opacity: 1; 
+    transform: translateX(0); 
+}
+.pulse-dot:hover ~ .status-tag {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 逆時針畫框動畫魔法 */
+.line {
+    position: absolute;
+    background-color: #ffffff; 
+}
+.line-left   { top: 0; left: 0; width: 2px; height: 100%; transform: scaleY(0); transform-origin: top; }
+.line-bottom { bottom: 0; left: 0; width: 100%; height: 2px; transform: scaleX(0); transform-origin: left; }
+.line-right  { bottom: 0; right: 0; width: 2px; height: 100%; transform: scaleY(0); transform-origin: bottom; }
+.line-top    { top: 0; right: 0; width: 100%; height: 2px; transform: scaleX(0); transform-origin: right; }
+
+.line-top    { transition: transform 0.1s linear 0s; }
+.line-right  { transition: transform 0.1s linear 0.1s; }
+.line-bottom { transition: transform 0.1s linear 0.2s; }
+.line-left   { transition: transform 0.1s linear 0.3s; }
+
+.pulse-dot:hover ~ .line-left   { transform: scaleY(1); transition: transform 0.1s linear 0s; }
+.pulse-dot:hover ~ .line-bottom { transform: scaleX(1); transition: transform 0.1s linear 0.1s; }
+.pulse-dot:hover ~ .line-right  { transform: scaleY(1); transition: transform 0.1s linear 0.2s; }
+.pulse-dot:hover ~ .line-top    { transform: scaleX(1); transition: transform 0.1s linear 0.3s; }
+
+@keyframes pulse {
+    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+}
+/* =========================================
+   8.5 電腦版標記點翻轉
+========================================= */
+@media (min-width: 769px) {
+    .mark-c .box-container {
+        flex-direction: row-reverse; 
+        left: auto;                  
+        right: 50%;                  
+        transform: translate(32.5px, -50%); 
+    }
+
+    .mark-c .box-container p {
+        margin: 0 15px 0 0;          
+        transform: translateX(10px); 
+        text-align: right;
+    }
+
+    .mark-c .pulse-dot:hover ~ p {
+        transform: translateX(0);
+    }
+    .marker-fude .box-container {
+        flex-direction: row-reverse;
+        transform: translateX(-100%);
+    }
+
+    /* 翻轉後，要微調脈衝點的間距 (現在點在文字右邊) */
+    .marker-fude .pulse-dot {
+        margin-right: 0 ;   /* 取消點點右邊原本的間距 */
+        margin-left: 15px;  /* 改為點點左邊跟文字保留間距 */
+    }
+    
+    /* 因為移到了邊緣，建議把文字對齊改成靠右，視覺更順暢 */
+    .marker-fude p {
+        text-align: right ;
+    }
+}
+
+/* ============================
+   背景圖與公司根據地標記點
+=============================== */
+.project-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: none; /* 取消原本的位移 */
+    width: 100%;
+    height: 100%;      
+    min-width: 0;    /* 清除多餘設定 */
+    min-height: 0;   /* 清除多餘設定 */
+    object-fit: cover;
+    z-index: 0; 
+    opacity: 0; 
+}
+.is-visible .project-bg-image { opacity: 1; }
+
+.contact-company-marker {
+    pointer-events: none !important; 
+    z-index: 2; 
+}
+
+.pulse-dot.company-dot {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pulse-dot.company-dot::before {
+    width: 15px;
+    height: 15px;
+    background-color:#ffffff;
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    animation: pulseBlue 2s infinite; 
+}
+
+.pulse-dot.company-dot::after {
+    width: 30px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+@keyframes pulseBlue {
+    0% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); }
+    50% { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); }
+    100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); }
+}
+
+/* =========================================
+   9. Contact 聯絡資訊卡片設定
+========================================= */
+.contact-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.glass-container {
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    transition: opacity 0.4s, transform 0.4s;
+}
+
+.contact-card.glass-container {
+    display: flex;
+    flex-direction: column;
+    border-radius: 2rem;
+    box-shadow: 0 0px 15px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2); 
+    margin: 0 20px; 
+}
+
+.glass-filter {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    filter: url(#lg-dist); 
+    isolation: isolate;
+}
+
+.glass-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: var(--lg-bg-color);
+}
+
+.glass-specular {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    overflow: hidden;
+    box-shadow: inset 1px 1px 0 var(--lg-highlight),
+                inset 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.glass-content { position: relative; z-index: 3; }
+
+.contact-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 45px 70px; 
+}
+.contact-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-family: 'MN', sans-serif;
+    /* 名片內容響應式 */
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    color: #8b490b;
+    letter-spacing: 0.2em;
+    text-align: left; 
+}
+
+/* ======================================
+   10. Footer 玻璃版權設定 
+========================================= */
+.site-footer {
+    position: absolute;
+    bottom: 25px; 
+    left: 50%;
+    width: 90vw;
+    transform: translateX(-50%) translateY(30px); 
+    height: 26px; 
+    border-radius: 5px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px;
+    z-index: 50; 
+    opacity: 0; 
+    pointer-events: none;
+    white-space: nowrap; 
+}
+
+.site-footer h4 {
+    margin: 0;
+    color: var(--lg-text);
+    line-height: 1; 
+    /* 版權文字響應式 */
+    font-size: clamp(0.68rem, 1.5vw, 0.9rem);
+}
+
+/* =========================================
+   11. RWD 響應式設計 (平板與手機版結構微調)
+========================================= */
+
+@media (max-width: 768px) {
+    /* 導覽列與選單結構 (必須保留) */
+    .main-nav { left: 20px; right: 20px; }
+    .hamburger { display: flex; }
+    .nav-glass-wrapper.glass-container {
+        position: fixed;
+        top: 2.5lvh;
+        right: -101vw; 
+        width: 60vw;
+        height: 95lvh;
+        border-radius: 5px; 
+        transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+        --lg-bg-color: rgba(255, 255, 255, 0.5); 
+    }
+    .nav-glass-wrapper.is-open { right: 3vw; }
+    .nav-content {
+        height: 80svh;
+        padding: 5svh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .nav-list { flex-direction: column; gap: 60px; }
+    .hamburger.is-open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.is-open span:nth-child(2) { opacity: 0; }
+    .hamburger.is-open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* 各區塊的手機版排版微調 (行距、內距等結構性微調) */
+    .story-content h5 { line-height: 1.8; }
+    .box-container { padding: 8px 15px 8px 12px; }
+    .box-container p { margin: 0 0 0 10px; }
+    .status-tag { top: -22px; }
+    
+    .contact-content { padding: 20px 20px; }
+    .contact-content h2 { margin-bottom: 20px; }
+    .contact-content ul { gap: 8px; }
+    
+    .site-footer { height: auto; padding: 8px 10px; }
+    .site-footer h4 { white-space: normal; text-align: center; line-height: 1.2; }
+    /* 1. 限制可視範圍：讓地圖區塊跟影片一樣大，多出來的直接卡掉 */
+    .project-section {
+        width: 100vw;
+        height: 100svh;
+        overflow: hidden; /* 這行是關鍵，隱藏超出螢幕的地圖邊緣 */
+    }
+
+    /* 2. 完美 9:16 物理鎖定術：讓容器代替圖片去做 cover 放縮 */
+    .map-markers-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        
+        /* 基礎設定：給比較寬的手機 (以寬度為基準) */
+        width: 100vw;
+        height: 177.78vw; /* 100vw * (16/9) */
+
+        /* 終極覆寫：給比較長的手機 (以高度為基準，確保填滿 100svh) */
+        min-width: 56.25svh; /* 100svh * (9/16) */
+        min-height: 100svh;
+    }
+    /*  2. 重新定義手機版的點點位置 (!important 強制覆蓋 HTML 設定) */
+    .map-marker:nth-of-type(1) { top: 30% !important; left: 20% !important; } /* 奇岩崇仁案 */
+    .map-marker:nth-of-type(2) { top: 44% !important; left: 40% !important; } /* 文林街廓案 */
+    .map-marker:nth-of-type(3) { top: 50% !important; left: 28% !important; } /* 葫東案 */
+    .map-marker:nth-of-type(4) { top: 84% !important; left: 30% !important; } /* 忠順興隆案 */
+    .map-marker:nth-of-type(5) { top: 68.5% !important; left: 86% !important; } /* 福德廣慈案 */
+    .map-marker:nth-of-type(6) { top: 92% !important; left: 30% !important; } /* 百齡案 */
+    
+    .contact-company-marker { top: 70% !important; left: 81% !important; }  /* 用九六公司點 */
+
+    .marker-fude .box-container {
+        flex-direction: row-reverse;
+        transform: translateX(-100%) !important;
+    }
+
+    /* 翻轉後，要微調脈衝點的間距 (現在點在文字右邊) */
+    .marker-fude .pulse-dot {
+        margin-right: 0 !important;   /* 取消點點右邊原本的間距 */
+        margin-left: 15px !important;  /* 改為點點左邊跟文字保留間距 */
+    }
+    
+    /* 因為移到了邊緣，建議把文字對齊改成靠右，視覺更順暢 */
+    .marker-fude p {
+        text-align: right !important;
+    }
+    /* =========================================
+        真正的手機版圓圈縮小，點擊區擴大
+       ========================================= */
+    /* 1. 把本體變成隱形觸控區 */
+    .pulse-dot,
+    .company-dot {
+        width: 30px !important;
+        height: 30px !important;
+        margin-left: -10px !important;  /* 抵消觸控區變大所推擠的空間 */
+        margin-right: -10px !important; /* 讓文字依然貼緊點點 */
+        background-color: transparent !important; 
+    }
+
+    /* 2. 綠色空心圓 (::before) 真正縮小的地方 */
+    .pulse-dot::before {
+        width: 14px !important;  /* 視覺尺寸縮小 */
+        height: 14px !important;
+        border-width: 2px !important; /* 邊框*/
+    }
+
+    /* 3. 擴散的波紋 (::after) 也要跟著縮小，並恢復動畫 */
+    .pulse-dot::after {
+        width: 25px !important;  /* 波紋最大範圍縮小 */
+        height: 25px !important;
+        background-color: rgba(46, 77, 42, 0.3) !important; /* 把顏色加回來！ */
+        pointer-events: none;
+    }
+
+    /* 4. 公司專屬點點 (橘色) 也要等比例縮小 */
+    .pulse-dot.company-dot::before {
+        width: 10px !important;
+        height: 10px !important;
+        border-width: 1.5px !important;
+    }
+    .pulse-dot.company-dot::after {
+        width: 20px !important;
+        height: 20px !important;
+        background-color: rgba(255, 255, 255, 0.4) !important;
+    }
+
+    /* 5. 針對福德廣慈(字左點右)的特例間距微調 */
+    .marker-fude .pulse-dot {
+        margin-left: 5px !important; 
+        margin-right: -10px !important; 
+    }
+}
+/* =========================================
+   12. 高級 RGB 色差游標 (僅限電腦版)
+========================================= */
+@media (min-width: 769px) {
+    /* 1. 原生游標，Project 模式變為手形指標 */
+    body.project-mode,
+    body.project-mode * {
+        cursor: pointer !important;
+    }
+
+    /* 2. 外層容器 */
+    .cursor-wrapper {
+        position: fixed;
+        top: 0; left: 0;
+        pointer-events: none;
+        z-index: 99998;
+        mix-blend-mode: normal; 
+    }
+
+    /* 3. 三個圓餅的共用體質 */
+    .cursor {
+        position: absolute;
+        top: 0; left: 0;
+        width: 18px; 
+        height: 18px;
+        border-radius: 50%;
+        /* 寬高變身交給 CSS 動畫，座標位移交給 GSAP */
+        transition: width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                    height 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* 4. 游標色 */
+    .cursor-r { background-color: #156082; }
+    .cursor-g { background-color: #39833f; }
+    .cursor-b { background-color: #929000; }
+
+    /* 5. 摸到導覽列或地圖點點時的「放大鎖定」狀態 */
+    .cursor-wrapper.is-hovering .cursor {
+        width: 40px;
+        height: 40px;
+        opacity: 0.1; 
+        border: 1px solid #ffffff;
+    }
+    .cursor-tooltip {
+        position: fixed;
+        top: 0; left: 0;
+        pointer-events: none; 
+        z-index: 99997; /* 放在點點和地圖圖片的下方，RGB游標的上方 */
+        
+        /* 提示詞樣式 */
+        font-family: 'MN', sans-serif;
+        font-size: 0.9rem;
+        font-weight: normal;
+        letter-spacing: 0.1em;
+        color: #ffffff;
+        background-color: rgba(102, 102, 102, 0.3);
+        padding: 6px 14px;
+        border-radius: 20px;
+        backdrop-filter: blur(2px); /* 毛玻璃質感 */
+        margin-left: 20px;
+        transform-origin: left center;
+    }
+}
