@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta property="og:image" content="https://96urbanregeneration.netlify.app/image/U96.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/96.svg" type="image/svg+xml">
+    <title>用九六都市更新有限公司</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollToPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/SplitText.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="u96">
+    <svg width="0" height="0" style="position: absolute; visibility: hidden;">
+        <filter id="lg-dist">
+            <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+    </svg>
+
+    <div id="loader-wrapper">
+        <div class="loader-stage">
+            <div class="loader-logo">
+                <div class="logo-part part-gray">
+                    <svg viewBox="0 0 210 200" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#d4d4d5" d="M52,189.4l60.2-80.6c18.5-24.6,16.9-43.7,16.9-43.7c0-6.4-0.7-11.4-1.6-15.3c-0.1-0.3-0.3-0.7-0.4-1c-1-3.3-2.2-6.6-4-9.6l0,0C111.6,19.2,94.2,7.8,71,6.1C55.6,5.1,41.4,9.2,29.1,19C14.8,30.5,6.5,45.3,5.7,63.8C5.1,78.6,9.3,92,19.2,103.3c11.7,13.6,26.4,20.7,44.5,19.9c0.4,0,0.8,0,1.1,0c-0.2,0.4-0.3,0.8-0.6,1.1c-4,5.4-8,10.7-12.1,16.1c-8.7,11.6-17.5,23.2-26.2,34.9c-0.6,0.8-1,1.6,0,2.4c7.1,5.2,14.3,10.5,21.4,15.7c0.8,0.6,1.4,0.4,2-0.4L52,189.4z M67.7,33.8c17.4,0,31.4,14,31.4,31.4c0,17.6-14,31.3-31.9,31.3c-17,0-31-14.2-31-31.3C36.1,47.8,50.3,33.7,67.7,33.8z"/>
+                    </svg>
+                </div>
+                <div class="logo-part part-blue">
+                    <svg viewBox="0 0 210 200" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#156082" d="M36.1,65.1c0-17.3,14-31.3,31.3-31.3c17.6,0,31.4,14.1,31.4,32c0,17.2-14.3,30.9-32,30.9C50,96.6,36.1,82.3,36.1,65.1L36.1,65.1z"/>
+                    </svg>
+                </div>
+                <div class="logo-part part-green">
+                    <svg viewBox="0 0 210 200" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#929000" d="M111.1,134.8c0-17.6,14-31.3,31.9-31.3c17,0,31,14.2,31,31.3c0,17.4-14.1,31.4-31.5,31.4C125.1,166.2,111.1,152.2,111.1,134.8L111.1,134.8z"/>
+                    </svg>
+                </div>
+                <div class="logo-part part-green">
+                    <svg viewBox="0 0 210 200" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#d4d4d4" d="M158,10.6L97.8,91.3c-18.5,24.6-16.9,43.7-16.9,43.7c0,6.4,0.7,11.4,1.6,15.3c0.1,0.3,0.3,0.7,0.4,1c1,3.3,2.2,6.6,4,9.6l0,0c11.7,20.1,29,31.5,52.2,33.1c15.4,1.1,29.6-3,41.9-12.9c14.3-11.5,22.7-26.2,23.4-44.8c0.6-14.8-3.6-28.2-13.4-39.5c-11.7-13.6-26.4-20.7-44.5-19.9c-0.4,0-0.8,0-1.1,0c0.2-0.4,0.3-0.8,0.6-1.1c4-5.4,8-10.7,12.1-16.1c8.7-11.6,17.5-23.2,26.2-34.9c0.6-0.8,1-1.6,0-2.4c-7.1-5.2-14.3-10.5-21.4-15.7c-0.8-0.6-1.4-0.4-2,0.4L158,10.6z M142.3,166.2c-17.4,0-31.4-14-31.4-31.4c0-17.6,14-31.3,31.9-31.3c17,0,31,14.2,31,31.3C173.9,152.2,159.7,166.3,142.3,166.2z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="loader-text">96 Urban Regeneration</div>
+            <div id="loading-text">0%</div>
+        </div>
+    </div>
+    <div id="scroll-hint">
+        <h6 class="scroll-text">Scroll to discover</h6>
+        <div class="scroll-circle">
+            <span class="scroll-arrow"></span>
+        </div>
+    </div>
+    <div class="menu-backdrop" id="menu-backdrop"></div>
+    <nav class="main-nav">
+        <div class="company-logo">
+            <h3>用九六</h3>
+        </div>
+        
+        <div class="nav-glass-wrapper glass-container" id="mobile-menu">
+            <div class="glass-filter"></div>
+            <div class="glass-overlay"></div>
+            <div class="glass-specular"></div>
+            
+            <div class="glass-content nav-content">
+                <ul class="nav-list">
+                    <li class="nav-item" data-label="intro"><h4>Intro</h4></li>
+                    <li class="nav-item" data-label="project"><h4>Project</h4></li>
+                    <li class="nav-item" data-label="contact"><h4>Contact</h4></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="hamburger" id="hamburger-btn">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+ 
+    <div class="scroll-container">
+        <div class="sticky-container">
+            <video id="hero-video" playsinline muted></video>
+            <div class="ambient-overlay"></div>
+            <div class="story-wrapper">
+                <div class="story-content">
+                    <h5>城市是一本讀不完的長篇。</h5>
+                    <h5>斑駁的牆面與街角，是您用一生寫下的章節，承載著家的重量。<br>然而，故事需要延續。</h5>
+                    <h5>都市更新不該是冰冷的拆除，而是一次溫柔的「重新裝幀」。<br>我們深知您的猶豫與不捨，那些對未知的顧慮，用九六都看在眼裡。</h5>
+                    <h5>我們不以建商自居，而是選擇站在您的身邊，成為共同抉擇的夥伴。</h5>
+                    <h5>當共識翻動書頁，舊記憶被細心梳理，<br>化作更安全、長遠的生活空間。</h5>
+                    <h5>因為這不只是開發，而是一場並肩前行的協作。<br>故事依然延續，只是換了更穩固的紙張。</h5>
+                    <h5>未來的內容，我們陪您一起寫下。</h5>
+                </div>
+            </div>
+            <div class="project-section">
+                <div class="project-title-wrapper">
+                    <h2>探索我們共同執筆的新篇章</h2>
+                    <h6>Explore Our Footprints</h6>
+                </div>
+                <div class="map-markers-wrapper">
+                    <img alt="用九六 專案地圖背景" class="project-bg-image">
+                    <div class="map-marker" style="top: 19%; left: 33.5%;">
+                        <div class="box-container">
+                            <div class="pulse-dot"></div>
+                            <p>北投區｜奇岩崇仁案</p>
+                            <div class="status-tag">進行中</div>
+                            <span class="line line-left"></span><span class="line line-bottom"></span><span class="line line-right"></span><span class="line line-top"></span>
+                        </div>
+                    </div>
+                    <div class="map-marker" style="top: 40%; left: 43.4%;">
+                        <div class="box-container">
+                            <div class="pulse-dot"></div>
+                            <p>士林區｜文林街廓案</p>
+                            <div class="status-tag">進行中</div>
+                            <span class="line line-left"></span><span class="line line-bottom"></span><span class="line line-right"></span><span class="line line-top"></span>
+                        </div>
+                    </div>
+                    <div class="map-marker" style="top: 49.5%; left: 37%;">
+                        <div class="box-container">
+                            <div class="pulse-dot"></div>
+                            <p>士林區｜葫東案</p>
+                            <div class="status-tag">進行中</div>
+                            <span class="line line-left"></span><span class="line line-bottom"></span><span class="line line-right"></span><span class="line line-top"></span>
+                        </div>
+                    </div>
+                    <div class="map-marker mark-c" style="top: 50%; left:73%;">
+                        <div class="box-container">
+                            <div class="pulse-dot"></div>
+                            <p>文山區｜忠順興隆案</p>
+                            <div class="status-tag">評估中</div>
+                            <span class="line line-left"></span><span class="line line-bottom"></span><span class="line line-right"></span><span class="line line-top"></span>
+                        </div>
+                    </div>
+                    <div class="map-marker marker-fude" style="top: 82%; left: 68.3%;">
+                        <div class="box-container">
+                            <div class="pulse-dot"></div>
+                            <p>信義區｜福德廣慈案</p>
+                            <div class="status-tag">已完成</div>
+                            <span class="line line-left"></span><span class="line line-bottom"></span><span class="line line-right"></span><span class="line line-top"></span>
+                        </div>
+                    </div>
+                    <div class="map-marker mark-c" style="top: 57%; left: 73%;">
+                        <div class="box-container">
+                            <div class="pulse-dot"></div>
+                            <p>士林區｜百齡案</p>
+                            <div class="status-tag">評估中</div>
+                            <span class="line line-left"></span><span class="line line-bottom"></span><span class="line line-right"></span><span class="line line-top"></span>
+                        </div>
+                    </div>
+                    <div class="map-marker contact-company-marker" style="top: 83%; left: 66.6%; opacity: 0;">
+                        <div class="pulse-dot company-dot"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-section">
+                <div class="contact-card glass-container">
+                    <div class="glass-filter"></div>   <div class="glass-overlay"></div>  <div class="glass-specular"></div> <div class="glass-content contact-content">
+                        <ul>
+                            <li>台北市信義區松山路465巷38號1樓</li>
+                            <li>(02) 2346-0088</li>
+                            <li>serves@jm-design.com.tw</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <footer class="site-footer glass-container">
+                <div class="glass-filter"></div>
+                <div class="glass-overlay"></div>
+                <div class="glass-specular"></div>
+                <div class="glass-content">
+                    <h4>© 2026 96 Urban Regeneration Ltd. All rights reserved.</h4>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <div class="cursor-wrapper">
+        <div class="cursor cursor-r"></div>
+        <div class="cursor cursor-g"></div>
+        <div class="cursor cursor-b"></div>
+    </div>
+    <div class="cursor-tooltip">探索 EXPLORE</div>
+    <script src="script.js"></script>
+</body>
+</html>
