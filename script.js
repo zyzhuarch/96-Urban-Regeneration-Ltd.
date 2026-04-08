@@ -51,9 +51,9 @@ const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/
     || window.innerWidth <= 768;
 
 // 智慧分流p結尾 w結尾
-const videoFile = isMobile ? '/anime/0000p.mp4' : '/anime/0000w.mp4';
-const posterFile = isMobile ? '/img/0000p.webp' : '/img/0000w.webp';
-const mapFile = isMobile ? 'img/0900p.webp' : 'img/0900w.webp';
+const videoFile = isMobile ? './anime/0000p.mp4' : './anime/0000w.mp4';
+const posterFile = isMobile ? './img/0000p.webp' : './img/0000w.webp';
+const mapFile = isMobile ? './img/0900p.webp' : './img/0900w.webp';
 
 // 立即把影片檔案路徑塞進 HTML 標籤裡
 video.src = videoFile;
