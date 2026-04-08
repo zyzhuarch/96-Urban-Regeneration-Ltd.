@@ -3,21 +3,21 @@
 ========================================= */
 @font-face {
     font-family: 'ENF'; 
-    src: url('/font/enfont.woff2') format('woff2');
+    src: url('./font/enfont.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap; 
 }
 @font-face {
     font-family: 'CHO'; 
-    src: url('/font/c.woff2') format('woff2');
+    src: url('./font/c.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap; 
 }
 @font-face {
     font-family: 'MN'; 
-    src: url('/font/a.woff2') format('woff2');
+    src: url('./font/a.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap; 
