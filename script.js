@@ -286,7 +286,7 @@ function initGSAPAnimation() {
     // ================
     tl.fromTo(video, 
         { currentTime: 0 }, 
-        { currentTime: video.duration || 30, ease: "none", duration: 27 }, 
+        { currentTime: video.duration || 7, ease: "none", duration: 27 }, 
         "intro"
     ); 
 
