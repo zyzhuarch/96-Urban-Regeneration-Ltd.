@@ -72,7 +72,7 @@ body.u96 { overflow: hidden; }
     position: fixed;
     top: 0; left: 0;
     width: 100vw; height: 100vh;
-    background-color: #A5570A; 
+    background-color: #8f9ca3; 
     z-index: 9999;
     display: flex;
     justify-content: center;
