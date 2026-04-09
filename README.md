@@ -1,24 +1,37 @@
-# 用九六都市更新有限公司 (96 Urban Regeneration)
+# 用九六都市更新有限公司 | 96 Urban Regeneration
 
-這是一個專為「用九六都市更新有限公司」打造的企業官方網站。透過沉浸式的捲動影音體驗與高質感的毛玻璃 UI 設計，傳遞溫柔且專業的都市更新理念。
+> 「都市更新不該是冰冷的拆除，而是一次溫柔的『重新裝幀』。」
 
-🔗 **線上瀏覽:** [https://zyzhuarch.github.io/96-Urban-Regeneration/](https://zyzhuarch.github.io/96-Urban-Regeneration/)
+🔗 **官方網站線上瀏覽:** [https://zyzhuarch.github.io/96-Urban-Regeneration/](https://zyzhuarch.github.io/96-Urban-Regeneration/)
 
-## 🛠️ 技術棧 (Tech Stack)
-* **前端核心:** HTML5, CSS3, Vanilla JavaScript
-* **動畫引擎:** GSAP (ScrollTrigger, ScrollToPlugin, SplitText)
-* **視覺設計:** Glassmorphism (毛玻璃特效) + SVG 雜訊濾鏡
-* **影音工程:** FFmpeg (針對網頁捲動優化的全關鍵影格 All-Intra 影片壓縮)
+---
 
-## 💡 開發筆記 (Developer Notes)
+## 📖 關於我們 (About Us)
 
-### 影片轉檔優化指令
-為了配合 GSAP `ScrollTrigger` 的無延遲捲動體驗，背景影片必須採用 `-g 1` (H.264) 或密集關鍵影格進行編碼，以確保瀏覽器能在每一幀快速提取畫面。
+城市是一本讀不完的長篇。
+斑駁的牆面與街角，是您用一生寫下的章節，承載著家的重量。然而，故事需要延續。
 
-**AVIF/WebP 序列轉 MP4 指令 (PowerShell + FFmpeg):**
-```bash
-# 1. 生成圖片絕對路徑清單 (解決容器辨識問題)
-(ls images_webp/*.webp | ForEach-Object { "file '$($_.FullName)'" }) | Set-Content list.txt
+在「用九六」，我們深知您的猶豫與不捨，那些對未知的顧慮，我們都看在眼裡。我們**不以建商自居，而是選擇站在您的身邊，成為共同抉擇的夥伴**。
 
-# 2. 執行高畫質/低延遲縫合 (適用於 60fps 網頁捲動)
-ffmpeg -r 60 -f concat -safe 0 -i list.txt -c:v libx264 -preset veryslow -tune stillimage -x264-params "aq-mode=2:ref=16" -g 1 -crf 24 -pix_fmt yuv420p -an final_scroll.mp4
+當共識翻動書頁，我們將舊記憶細心梳理，化作更安全、長遠的生活空間。因為這不只是開發，而是一場並肩前行的協作。故事依然延續，只是換了更穩固的紙張。
+
+未來的內容，我們陪您一起寫下。
+
+## 🗺️ 我們的足跡 (Our Footprints)
+
+我們專注於台北市的都市更新與危老重建服務，為城市注入新生命。目前的專案版圖涵蓋：
+* **士林區**｜文林街廓案、葫東案、百齡案
+* **北投區**｜奇岩崇仁案
+* **文山區**｜忠順興隆案
+* **信義區**｜福德廣慈案
+
+## 📞 聯絡我們 (Contact)
+
+若您有房屋老舊、危老重建或都市更新的相關疑問，歡迎隨時與我們聯繫，讓我們為您的家進行溫柔的重新裝幀：
+* **地址:** 台北市信義區松山路465巷38號1樓
+* **電話:** (02) 2346-0088
+* **信箱:** service@jm-design.com.tw
+
+---
+
+*(Technical Note: 本官方網站採用 HTML5, CSS3 Glassmorphism 及 GSAP 引擎打造沉浸式捲動體驗。)*
