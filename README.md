@@ -1,4 +1,4 @@
-# 用九六都市更新有限公司 | 96 Urban Regeneration
+# 用九六都市更新有限公司 | 96 Urban Regeneration Ltd
 
 > 「都市更新不該是冰冷的拆除，而是一次溫柔的『重新裝幀』。」
 
