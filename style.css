@@ -38,8 +38,8 @@ body::-webkit-scrollbar {display: none;}
     --mood-c1: #156082;
     --mood-c2: #A5570A;
     --mood-c3: #929000; 
-    --lg-bg-color: rgba(255, 255, 255, 0.3); 
-    --lg-highlight: rgba(255, 255, 255, 0.4); 
+    --lg-bg-color: rgba(255, 255, 255, 0.5); 
+    --lg-highlight: rgba(255, 255, 255, 0.7); 
     --lg-text: #000000;
 }
 
