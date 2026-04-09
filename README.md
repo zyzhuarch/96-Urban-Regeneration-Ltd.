@@ -2,7 +2,7 @@
 
 這是一個專為「用九六都市更新有限公司」打造的企業官方網站。透過沉浸式的捲動影音體驗與高質感的毛玻璃 UI 設計，傳遞溫柔且專業的都市更新理念。
 
-🔗 **線上瀏覽 (Live Demo):** [https://zyzhuarch.github.io/96-Urban-Regeneration/](https://zyzhuarch.github.io/96-Urban-Regeneration/)
+🔗 **線上瀏覽:** [https://zyzhuarch.github.io/96-Urban-Regeneration/](https://zyzhuarch.github.io/96-Urban-Regeneration/)
 
 ## 🛠️ 技術棧 (Tech Stack)
 * **前端核心:** HTML5, CSS3, Vanilla JavaScript
