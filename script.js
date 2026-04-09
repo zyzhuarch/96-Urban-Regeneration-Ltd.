@@ -146,7 +146,7 @@ function updateLoadingScreen() {
     if (finalProgress >= 1 && downloadProgress === 1 && isMapLoaded) {
         isReady = true;
         
-        // 🌟 塔塔新增：載入完成的瞬間，背景無縫切換成綠色！
+        // 完成的瞬間，背景無縫切換
         document.getElementById('loader-wrapper').style.backgroundColor = '#A5570A';
         
         document.getElementById('loader-wrapper').style.pointerEvents = 'none'; 
