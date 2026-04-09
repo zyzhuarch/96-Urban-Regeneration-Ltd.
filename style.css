@@ -720,7 +720,7 @@ video {
     flex-direction: column;
     gap: 20px;
     font-family: 'MN', sans-serif;
-    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-size: clamp(1rem, 2vw, 1.8rem);
     text-shadow: 1px 1px 10px rgb(255, 255, 255);
     color: #8b490b;
     letter-spacing: 0.2em;
