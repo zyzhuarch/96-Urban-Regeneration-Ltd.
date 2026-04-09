@@ -15,7 +15,7 @@
 ### 影片轉檔優化指令
 為了配合 GSAP `ScrollTrigger` 的無延遲捲動體驗，背景影片必須採用 `-g 1` (H.264) 或密集關鍵影格進行編碼，以確保瀏覽器能在每一幀快速提取畫面。
 
-**AVIF/WebP 序列轉 MP4 終極指令 (PowerShell + FFmpeg):**
+**AVIF/WebP 序列轉 MP4 指令 (PowerShell + FFmpeg):**
 ```bash
 # 1. 生成圖片絕對路徑清單 (解決容器辨識問題)
 (ls images_webp/*.webp | ForEach-Object { "file '$($_.FullName)'" }) | Set-Content list.txt
