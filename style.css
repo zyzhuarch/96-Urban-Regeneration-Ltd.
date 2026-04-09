@@ -57,7 +57,7 @@ h4, h6 {font-family: 'ENF', sans-serif;}
 
 /* clamp(手機最小尺寸, 隨螢幕縮放比例, 電腦最大尺寸) */
 h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); }
-h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); letter-spacing: 0.15em;}
+h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); letter-spacing: 0.15em;}
 h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); color:#ffffff;} /* logo */
 h4 { font-size: clamp(0.9rem, 1.5vw, 1rem); letter-spacing: 0.1em;} /* 導覽列 版權 */
 h5 { font-size: clamp(1.1rem, 2vw, 1.6rem); } /* 故事文案 */
@@ -83,7 +83,7 @@ body.u96 { overflow: hidden; }
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px; 
+    gap: 20px; 
 }
 
 .loader-logo {
@@ -103,7 +103,7 @@ body.u96 { overflow: hidden; }
 .loader-text  {
     font-family: 'ENF', sans-serif;
     color: #fff;
-    font-size: clamp(1.6rem, 4vw, 4rem);
+    font-size: clamp(1.2rem, 6vw, 4rem);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     opacity: 0; 
@@ -111,7 +111,7 @@ body.u96 { overflow: hidden; }
 #loading-text {
     font-family: 'ENF', sans-serif;
     color: #fff;
-    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-size: clamp(1rem, 3vw, 2rem);
 }
 
 /* =========================================
@@ -721,6 +721,7 @@ video {
     gap: 20px;
     font-family: 'MN', sans-serif;
     font-size: clamp(1rem, 2vw, 1.4rem);
+    text-shadow: 1px 1px 10px rgb(255, 255, 255);
     color: #8b490b;
     letter-spacing: 0.2em;
     text-align: left; 
@@ -884,6 +885,9 @@ video {
     .cursor-tooltip {
         display: none !important;
     }
+    .contact-card.glass-container {
+    border-radius: 1rem !important;
+}
 }
 
 /* =========================================
