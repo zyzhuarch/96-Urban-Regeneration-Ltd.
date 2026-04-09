@@ -141,7 +141,7 @@ function updateLoadingScreen() {
     }
 
     loadingText.innerText = `${Math.floor(finalProgress * 100)}%`;
-    gsap.to(loadingTl, { progress: finalProgress, duration: 1, ease: "none" });
+    gsap.to(loadingTl, { progress: finalProgress, duration: 1, ease: "none", overwrite: "auto" });
 
     if (finalProgress >= 1 && downloadProgress === 1 && isMapLoaded) {
         isReady = true;
@@ -286,7 +286,7 @@ function initGSAPAnimation() {
     // ================
     tl.fromTo(video, 
         { currentTime: 0 }, 
-        { currentTime: video.duration || 2, ease: "none", duration: 27 }, 
+        { currentTime: video.duration || 30, ease: "none", duration: 27 }, 
         "intro"
     ); 
 
@@ -342,6 +342,10 @@ function initGSAPAnimation() {
         scale: 2, 
         duration: 2 
     }, "project-=2");
+
+    // rgb 漸層疊加退場（project 段開始前 3 秒淡出）
+    tl.to(".ambient-overlay", { opacity: 0, duration: 3 }, "project-=3");
+
     // =========================================
     // Project 與 Contact 運鏡
     // =========================================
@@ -471,9 +475,6 @@ function initGSAPAnimation() {
         duration: 0.8,
         ease: "power2.out"
     }, "contact+=1"); 
-    
-    // rgb 
-    tl.to(".ambient-overlay",{opacity:0,duration:3},"project-=3")
 
     // =========================================
     // 地圖點點 hover 互動（桌機限定）
@@ -561,15 +562,18 @@ if (!isMobile) {
     
     gsap.set([cursorR, cursorG, cursorB], { xPercent: -50, yPercent: -50 });
 
-    const toB = {
+    // quickR → cursorR（最快，0.05s，貼近游標）
+    const quickR = {
         x: gsap.quickTo(cursorR, "x", { duration: 0.05, ease: "power3.out" }),
         y: gsap.quickTo(cursorR, "y", { duration: 0.05, ease: "power3.out" })
     };
-    const toG = {
+    // quickG → cursorG（中速，0.15s）
+    const quickG = {
         x: gsap.quickTo(cursorG, "x", { duration: 0.15, ease: "power3.out" }),
         y: gsap.quickTo(cursorG, "y", { duration: 0.15, ease: "power3.out" })
     };
-    const toR = {
+    // quickB → cursorB（最慢，0.25s，拖曳最長）
+    const quickB = {
         x: gsap.quickTo(cursorB, "x", { duration: 0.25, ease: "power3.out" }),
         y: gsap.quickTo(cursorB, "y", { duration: 0.25, ease: "power3.out" })
     };
@@ -589,9 +593,9 @@ if (!isMobile) {
     // -------------------------------------
     window.addEventListener("mousemove", (e) => {
         // 永遠更新 RGB 游標位置
-        toB.x(e.clientX); toB.y(e.clientY);
-        toG.x(e.clientX); toG.y(e.clientY);
-        toR.x(e.clientX); toR.y(e.clientY);
+        quickR.x(e.clientX); quickR.y(e.clientY);
+        quickG.x(e.clientX); quickG.y(e.clientY);
+        quickB.x(e.clientX); quickB.y(e.clientY);
 
         tXTo(e.clientX);
         tYTo(e.clientY);
