@@ -2,7 +2,7 @@
 
 > 「都市更新不該是冰冷的拆除，而是一次溫柔的『重新裝幀』。」
 
-🔗 **官方網站線上瀏覽:** [https://zyzhuarch.github.io/96-Urban-Regeneration/](https://zyzhuarch.github.io/96-Urban-Regeneration/)
+🔗 **官方網站線上瀏覽:** [(https://zyzhuarch.github.io/96-Urban-Regeneration-Ltd./](https://zyzhuarch.github.io/96-Urban-Regeneration-Ltd./)]
 
 ---
 
