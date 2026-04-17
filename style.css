@@ -26,7 +26,7 @@
 body, html {
     margin: 0;
     padding: 0;
-    background-color: #8f9ca3;
+    background-color: #A5570A;
     font-family: 'ENF', sans-serif; 
     color: #ffffff; 
     scrollbar-width: none; 
@@ -38,7 +38,7 @@ body::-webkit-scrollbar {display: none;}
     --mood-c1: #156082;
     --mood-c2: #A5570A;
     --mood-c3: #929000; 
-    --lg-bg-color: rgba(255, 255, 255, 0.5); 
+    --lg-bg-color: rgba(189, 189, 189, 0.5); 
     --lg-highlight: rgba(255, 255, 255, 0.7); 
     --lg-text: #000000;
 }
@@ -122,7 +122,7 @@ body.u96 { overflow: hidden; }
     top: 0; 
     left: 0; 
     width: 100vw; 
-    height: 100svh;
+    height: 100lvh;
     background-color: rgba(0, 0, 0, 0.4); 
     backdrop-filter: blur(8px);         
     -webkit-backdrop-filter: blur(8px); 
@@ -235,14 +235,14 @@ body.u96 { overflow: hidden; }
 .sticky-container {
     position: sticky;
     top: 0;
-    height: 100svh;
+    height: 100lvh;
     width: 100%;
     overflow: hidden; 
 }
 
 video {
     width: 100%;
-    height: 100svh;
+    height: 100lvh;
     object-fit: cover; 
     display: block;
     pointer-events: none;
@@ -301,7 +301,7 @@ video {
 .ambient-overlay {
     position: absolute;
     top: 0; left: 0;
-    width: 100vw; height: 100svh;
+    width: 100vw; height: 100lvh;
     z-index: 25;
     pointer-events: none;
 
@@ -384,7 +384,7 @@ video {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100svh;
+    height: 100lvh;
     z-index: 20;
     opacity: 0; 
     pointer-events: none; 
@@ -424,8 +424,8 @@ video {
     transform: translate(-50%, -50%);
     width: 100vw;
     height: 56.25vw;      
-    min-width: 177.78vh;  
-    min-height: 100svh;
+    min-width: 177.78lvh;  
+    min-height: 100lvh;
     pointer-events: none; 
 }
 
@@ -810,7 +810,7 @@ video {
     /* 限制可視範圍：隱藏超出螢幕的地圖邊緣 */
     .project-section {
         width: 100vw;
-        height: 100svh;
+        height: 100lvh;
         overflow: hidden; 
     }
 
@@ -822,8 +822,8 @@ video {
         transform: translate(-50%, -50%);
         width: 100vw;
         height: 177.78vw; 
-        min-width: 56.25svh; 
-        min-height: 100svh;
+        min-width: 56.25lvh; 
+        min-height: 100lvh;
     }
     
     /* 重新定義手機版的點點位置 */
