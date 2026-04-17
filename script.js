@@ -50,7 +50,7 @@ loadingTl.fromTo(chars,
 const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
     || window.innerWidth <= 768;
 
-// 智慧分流p結尾 w結尾
+// 智慧分流
 const videoFile = isMobile ? './anime/0000p.mp4' : './anime/0000w.mp4';
 const posterFile = isMobile ? './img/0000p.webp' : './img/0000w.webp';
 const mapFile = isMobile ? './img/0900p.webp' : './img/0900w.webp';
@@ -489,16 +489,16 @@ function initGSAPAnimation() {
         const mapMarkers = document.querySelectorAll('.map-marker:not(.contact-company-marker)');
         
         mapMarkers.forEach(marker => {
-            const style = marker.style;
-            const offsetXPercent = (0.5 - parseFloat(style.left) / 100);
-            const offsetYPercent = (0.5 - parseFloat(style.top) / 100);
-
             const dot = marker.querySelector('.pulse-dot');
             if (!dot) return;
 
             dot.addEventListener('mouseenter', () => {
                 if (desiredState.isContactMode || !document.querySelector('.project-section').classList.contains('is-visible')) return;
                 
+                // 讓系統自動去抓它真實渲染的像素座標
+                const offsetX = (mapStage.offsetWidth / 2) - marker.offsetLeft;
+                const offsetY = (mapStage.offsetHeight / 2) - marker.offsetTop;
+
                 mapMarkers.forEach(otherMarker => {
                     if (otherMarker !== marker) { 
                         gsap.to(otherMarker, { opacity: 0, duration: 0.3 }); 
@@ -506,8 +506,8 @@ function initGSAPAnimation() {
                 });
 
                 desiredState.scale = 1.5; 
-                desiredState.x = offsetXPercent * mapStage.offsetWidth;
-                desiredState.y = offsetYPercent * mapStage.offsetHeight;
+                desiredState.x = offsetX;
+                desiredState.y = offsetY;
             });
 
             dot.addEventListener('mouseleave', () => {
@@ -528,7 +528,7 @@ function initGSAPAnimation() {
     // 情緒時間軸 6 組顏色對應 3 個變數
     // =========================================
     const moodColors = [
-        //       c1 (左上)     c2 (中間)     c3 (右下)
+        //     c1 (左上)     c2 (中間)     c3 (右下)
         { c1: "#156082", c2: "#A55",c3: "#d4d4d5" },
         { c1: "#924200ff", c2: "#8ca8dbff", c3: "#666" },
         { c1: "#fdd8e2ff", c2: "#53707eff", c3: "#533131ff" }, 
@@ -608,7 +608,7 @@ if (!isMobile) {
     });
 
     // -------------------------------------
-    // 4. 監聽 Hover 狀態 (RGB 游標與提示詞的自動避讓魔法)
+    // 4. 監聽 Hover 狀態
     // -------------------------------------
     const hoverElements = document.querySelectorAll('.pulse-dot:not(.company-dot), .nav-item, #hamburger-btn');
     const mapDots = document.querySelectorAll('.pulse-dot:not(.company-dot)');
