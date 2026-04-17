@@ -148,7 +148,9 @@ function updateLoadingScreen() {
         
         // 完成的瞬間，背景無縫切換
         document.getElementById('loader-wrapper').style.backgroundColor = '#A5570A';
-        
+        document.body.style.backgroundColor = '#A5570A';
+        const themeMeta = document.getElementById('theme-color-meta');
+        if(themeMeta) themeMeta.setAttribute('content', '#A5570A');
         document.getElementById('loader-wrapper').style.pointerEvents = 'none'; 
         document.body.classList.remove('u96'); 
         
