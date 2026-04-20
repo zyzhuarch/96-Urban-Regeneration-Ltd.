@@ -343,23 +343,23 @@ video {
     top: 0;
     left: 0;
     width: 12px;     
-    height: 100lvh;    /* 貫穿整個螢幕高度 (用 lvh 對抗手機縮放) */
-    background-color: rgba(255, 255, 255, 0.15); /* 淡淡的半透明底色軌道，讓畫面更有層次 */
-    z-index: 9998;     /* 放在非常上層 (但不要蓋過載入畫面) */
-    pointer-events: none; /* 絕對不能擋到使用者的點擊 */
+    height: 100lvh;    
+    background-color: rgba(255, 255, 255, 0); 
+    z-index: 9998;    
+    pointer-events: none;
 }
 
 .progress-fill {
     width: 100%;
     height: 100%;
-    background-color: #A5570A; /* 👉 九六專屬橘棕色 */
-    transform-origin: top;     /* 從最上面開始往下長 */
-    transform: scaleY(0);      /* 初始長度為 0 (全靠 JS 控制) */
+    background-color: #A5570A;
+    transform-origin: top;
+    transform: scaleY(0);
 }
 
 @media (max-width: 768px) {
     .scroll-progress-bar {
-        width: 6px; /* 手機版邊界很窄，12px 可能會太搶戲，6px 剛剛好！ */
+        width: 6px;
     }
 }
 /* =========================================
@@ -918,10 +918,9 @@ video {
 }
 
 /* =========================================
-   12. 高級 RGB 色差游標 (僅限電腦版)
+   12. RGB 色差游標 (僅限電腦版)
 ========================================= */
 @media (min-width: 769px) {
-    /* 原生游標，Project 模式變為手形指標 */
     body.project-mode,
     body.project-mode * {
         cursor: pointer !important;
