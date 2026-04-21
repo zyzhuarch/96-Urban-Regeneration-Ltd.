@@ -2,8 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://zyzhuarch.github.io/96-Urban-Regeneration-Ltd./</loc>
-    <lastmod>2026-04-20</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://zyzhuarch.github.io/96-Urban-Regeneration-Ltd./#intro</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zyzhuarch.github.io/96-Urban-Regeneration-Ltd./#project</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zyzhuarch.github.io/96-Urban-Regeneration-Ltd./#contact</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
