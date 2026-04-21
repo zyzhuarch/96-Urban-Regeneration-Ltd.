@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://zyzhuarch.github.io/96-Urban-Regeneration-Ltd./sitemap.xml
